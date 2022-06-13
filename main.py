@@ -1,98 +1,45 @@
-# import random module
+
 import random
 
-# Print multiline instruction
-# performstring concatenation of string
-print("Winning Rules of the Rock paper scissor game as follows: \n"
-								+"Rock vs paper->paper wins \n"
-								+ "Rock vs scissor->Rock wins \n"
-								+"paper vs scissor->scissor wins \n")
-
 while True:
-	print("Enter choice \n 1 for Rock, \n 2 for paper, and \n 3 for scissor \n")
-	
-	# take the input from user
-	choice = int(input("User turn: "))
+    user_action = input("Enter a choice (R for rock, P for paper, S for scissors): ")
+    while((user_action != "r") and (user_action != "p") and (user_action != "s")):
+        print ("you have entered the wrong input, try again! \n")
+        user_action = input("Enter a choice (r for rock, p for paper, s for scissors): ")
 
-	# OR is the short-circuit operator
-	# if any one of the condition is true
-	# then it return True value
-	
-	# looping until user enter invalid input
-	while choice > 3 or choice < 1:
-		choice = int(input("enter valid input: "))
-		
-
-	# initialize value of choice_name variable
-	# corresponding to the choice value
-	if choice == 1:
-		choice_name = 'Rock'
-	elif choice == 2:
-		choice_name = 'paper'
-	else:
-		choice_name = 'scissor'
-		
-	# print user choice
-	print("user choice is: " + choice_name)
-	print("\nNow its computer turn.......")
-
-	# Computer chooses randomly any number
-	# among 1 , 2 and 3. Using randint method
-	# of random module
-	comp_choice = random.randint(1, 3)
-	
-	# looping until comp_choice value
-	# is equal to the choice value
-	while comp_choice == choice:
-		comp_choice = random.randint(1, 3)
-
-	# initialize value of comp_choice_name
-	# variable corresponding to the choice value
-	if comp_choice == 1:
-		comp_choice_name = 'Rock'
-	elif comp_choice == 2:
-		comp_choice_name = 'paper'
-	else:
-		comp_choice_name = 'scissor'
-		
-	print("Computer choice is: " + comp_choice_name)
-
-	print(choice_name + " V/s " + comp_choice_name)
-	#we need to check of a draw
-	if choice == comp_choice:
-		print("Draw=> ", end = "");  Draw = "Draw"
-		result = Draw
-	
-	# condition for winning
-		if((choice == 1 and comp_choice == 2) or
-		(choice == 2 and comp_choice ==1 )):
-			print("paper wins => ", end = "")
-			result = "paper"
-
-		elif((choice == 1 and comp_choice == 3) or
-			(choice == 3 and comp_choice == 1)):
-			print("Rock wins =>", end = "")
-			result = "Rock"
-		else:
-			print("scissor wins =>", end = "")
-			result = "scissor"
-
-	# Printing either user or computer wins or draw
-	if result == Draw:
-		print("<== Its a tie ==>")
-	if result == choice_name:
-		print("<== User wins ==>")
-	else:
-		print("<== Computer wins ==>")
-		
-	print("Do you want to play again? (Y/N)")
-	ans = input().lower
+    if user_action == "r" :
+        user_action = "rock"
+    elif user_action == "p" :
+        user_action = "paper"
+    elif user_action == "s" :
+            user_action = "scissors"        
+    possible_actions = ["rock", "paper", "scissors"]
+    r = "rock"
+    p = "paper"
+    s = "scissors"
+    computer_action = random.choice(possible_actions)
+    print(f"\n Player({user_action})  : CPU({computer_action})\n")
 
 
-	# if user input n or N then condition is True
-	if ans == 'n':
-		break
-	
-# after coming out of the while loop
-# we print thanks for playing
-print("\nThanks for playing")
+    if user_action == computer_action:
+        print(f"Both players selected {user_action}. It's a tie!")    
+        
+    elif user_action == r:
+        if computer_action == s:
+            print("Rock smashes scissors! You win!")
+        else:
+            print("Paper covers rock! You lose.")
+    elif user_action == p:
+        if computer_action == r:
+            print("Paper covers rock! You win!")
+        else:
+            print("Scissors cuts paper! You lose.")
+    elif user_action == s:
+        if computer_action == p:
+            print("Scissors cuts paper! You win!")
+        else:
+            print("Rock smashes scissors! You lose.")
+
+       
+    if user_action != computer_action:
+        break
